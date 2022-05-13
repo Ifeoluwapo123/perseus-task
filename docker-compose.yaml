@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: perseus
+#    depends_on:
+#      - db
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/perseus
+#      - SPRING_DATASOURCE_USERNAME=perseus
+#      - SPRING_DATASOURCE_PASSWORD=perseus123
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#
+#  db:
+#    image: 'postgres:13.1-alpine'
+#    container_name: db
+#    environment:
+#      - POSTGRES_USER=perseus
+#      - POSTGRES_PASSWORD=perseus123
