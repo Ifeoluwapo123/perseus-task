@@ -1,13 +1,14 @@
 package com.perseus.task.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Builder
+@Getter
+@Setter
 @Table(name = "users", indexes = {
         @Index(name = "fn_index", columnList = "firstName"),
         @Index(name = "ln_index", columnList = "lastName")
@@ -22,11 +23,11 @@ public class User extends BaseModel{
     @Column(nullable = false)
     private String firstName;
 
-    @OneToMany
-    @Column(name = "email_id")
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "email_id", referencedColumnName = "id")
     private List<Email> emails;
 
-    @OneToMany
-    @Column(name = "phone_number_id")
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name = "phone_number_id", referencedColumnName = "id")
     private List<PhoneNumber> phoneNumbers;
 }

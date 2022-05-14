@@ -1,13 +1,13 @@
 package com.perseus.task.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
+@Setter
+@Getter
 @Builder
 @Table(name = "phone_number")
 @NoArgsConstructor
