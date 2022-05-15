@@ -25,11 +25,11 @@ A rest-service which is able to:
    ```
    docker-compose up 
    ```
-   * Or run on detached mode
+   * Or run in detached mode
    ```
    docker-compose up -d
    ```
-   * To rebuild images 
+   * To rebuild app 
    ```
    * docker-compose up --build
    ```
