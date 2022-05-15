@@ -24,10 +24,10 @@ public class User extends BaseModel{
     private String firstName;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "email_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<Email> emails;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "phone_number_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private List<PhoneNumber> phoneNumbers;
 }

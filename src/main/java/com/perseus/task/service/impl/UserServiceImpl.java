@@ -114,7 +114,10 @@ public class UserServiceImpl implements UserService {
 
         if(Objects.equals(contact, ContactType.EMAIL)){
             if(!emailRepository.existsByEmail(req.getOldEmailContact()))
-                throw new ApiResourceNotFoundException("Email Not found");
+                throw new ApiResourceNotFoundException("Old Email Not found");
+
+            if(emailRepository.existsByEmail(req.getNewEmailContact()))
+                throw new ApiResourceNotFoundException("New Email already exist");
 
             List<Email> updatedUserEmailList = user.getEmails().stream()
                 .map(email-> updateEmail(email, req)).collect(Collectors.toList());
