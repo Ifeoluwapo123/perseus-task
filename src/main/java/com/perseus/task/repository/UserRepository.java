@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("SELECT u FROM User u WHERE lower(u.firstName) = ?1"+
-           "OR lower(u.lastName) = ?1" )
+    @Query("SELECT u FROM User u WHERE lower(u.firstName) like %?1%"+
+           "OR lower(u.lastName) like %?1%" )
     Page<User> searchUserByName(String name, Pageable pageable);
 }

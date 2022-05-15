@@ -1,15 +1,14 @@
 package com.perseus.task.validator.impl;
 
-import com.perseus.task.payload.request.UserContactRequest;
+import com.perseus.task.payload.request.UserUpdateContactRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class ValidateContactRequestTest {
+class ValidateUpdateContactRequestTest {
 
-    private final ValidateContactRequest req = new ValidateContactRequest();
-    private final UserContactRequest request = new UserContactRequest();
+    private final ValidateUpdateContactRequest req = new ValidateUpdateContactRequest();
+    private final UserUpdateContactRequest request = new UserUpdateContactRequest();
 
     @BeforeEach
     void setUp() {
@@ -20,7 +19,8 @@ class ValidateContactRequestTest {
     void isValidEmail() {
         // for email
         request.setContactType("email");
-        request.setEmail("test@gmail.com");
+        request.setOldEmailContact("test@gmail.com");
+        request.setNewEmailContact("test2@gmail.com");
 
         assertTrue(req.isValid(request, null));
     }
@@ -29,7 +29,8 @@ class ValidateContactRequestTest {
     void isValidPhoneNumber(){
         // for phone number
         request.setContactType("phone number");
-        request.setPhoneNumber("09100827653");
+        request.setOldPhoneNumber("09100827653");
+        request.setNewPhoneNumber("08100726536");
 
         assertTrue(req.isValid(request, null));
     }
@@ -37,7 +38,8 @@ class ValidateContactRequestTest {
     @Test
     void isNotValidBecauseEmailContactTypeWasSelectedButPhoneNumberWasSupplied(){
         request.setContactType("email");
-        request.setEmail("09100876254");
+        request.setOldEmailContact("test@gmail.com");
+        request.setNewEmailContact("08023422455");
 
         assertFalse(req.isValid(request, null));
     }
@@ -45,7 +47,8 @@ class ValidateContactRequestTest {
     @Test
     void isNotValidBecausePhoneNumberContactTypeWasSelectedButEmailWasSupplied(){
         request.setContactType("phone number");
-        request.setEmail("testing@gmail.com");
+        request.setNewPhoneNumber("testing@gmail.com");
+        request.setOldPhoneNumber("09182736444");
 
         assertFalse(req.isValid(request, null));
     }

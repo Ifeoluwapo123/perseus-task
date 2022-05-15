@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Setter
 @Getter
 @Builder
-@Table(name = "phone_number")
+@Table(name = "email")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Email extends BaseModel{

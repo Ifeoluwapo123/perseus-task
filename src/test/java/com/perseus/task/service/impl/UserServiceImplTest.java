@@ -17,14 +17,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import java.util.Arrays;
+
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -129,7 +124,7 @@ class UserServiceImplTest {
     void userAddContactEmail() {
         UserContactRequest req = new UserContactRequest();
         req.setContactType("EMAIL");
-        req.setEmailContact("test@gmail.com");
+        req.setEmail("test@gmail.com");
         req.setUserId(1L);
         // given
         given(userRepository.findById(1L)).willReturn(Optional.ofNullable(user));
@@ -151,7 +146,7 @@ class UserServiceImplTest {
     void userAddContactPhoneNumber() {
         UserContactRequest req = new UserContactRequest();
         req.setContactType("PHONE_NUMBER");
-        req.setEmailContact("09100763542");
+        req.setEmail("09100763542");
         req.setUserId(1L);
         // given
         given(userRepository.findById(1L)).willReturn(Optional.ofNullable(user));
@@ -173,7 +168,7 @@ class UserServiceImplTest {
     void userAddContactPhoneNumberShowThrowExceptionUserNotFound(){
         UserContactRequest req = new UserContactRequest();
         req.setContactType("PHONE_NUMBER");
-        req.setEmailContact("09100763542");
+        req.setEmail("09100763542");
         req.setUserId(1L);
 
         assertThatThrownBy(()-> userService.userAddContact(req))
@@ -187,7 +182,7 @@ class UserServiceImplTest {
     void userAddContactEmailShowThrowExceptionUserNotFound(){
         UserContactRequest req = new UserContactRequest();
         req.setContactType("EMAIL");
-        req.setEmailContact("test@gmail.com");
+        req.setEmail("test@gmail.com");
         req.setUserId(1L);
 
         assertThatThrownBy(()-> userService.userAddContact(req))

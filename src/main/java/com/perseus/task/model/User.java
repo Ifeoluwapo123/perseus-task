@@ -23,11 +23,11 @@ public class User extends BaseModel{
     @Column(nullable = false)
     private String firstName;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "email_id", referencedColumnName = "id")
     private List<Email> emails;
 
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "phone_number_id", referencedColumnName = "id")
     private List<PhoneNumber> phoneNumbers;
 }

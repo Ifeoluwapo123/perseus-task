@@ -76,8 +76,10 @@ public class UserServiceImpl implements UserService {
         ContactType contact = HelperMethod.filterEnum(ContactType.class, req.getContactType());
 
         if(Objects.equals(contact, ContactType.EMAIL)){
+            if(emailRepository.existsByEmail(req.getEmail()))
+                throw new ApiResourceNotFoundException("Email already exist");
             // save new email
-            Email email = Email.builder().email(req.getEmailContact()).build();
+            Email email = Email.builder().email(req.getEmail()).build();
             Email savedEmail = emailRepository.save(email);
 
             // add the new email to the list of emails
@@ -130,7 +132,7 @@ public class UserServiceImpl implements UserService {
         // save user
         userRepository.save(user);
 
-        return new MessageResponse("Successfully update contact");
+        return new MessageResponse("Successfully updated contact");
     }
 
     @Override

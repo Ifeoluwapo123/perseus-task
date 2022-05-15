@@ -3,16 +3,15 @@ package com.perseus.task.controller;
 import com.perseus.task.model.User;
 import com.perseus.task.payload.request.UserContactRequest;
 import com.perseus.task.payload.request.UserCreationRequest;
+import com.perseus.task.payload.request.UserUpdateContactRequest;
 import com.perseus.task.payload.response.MessageResponse;
 import com.perseus.task.service.UserService;
-import com.perseus.task.validator.annotation.ValidContact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 @RestController
@@ -50,8 +49,8 @@ public class UserController {
     }
 
     @PutMapping(value = "/contact/update")
-    public ResponseEntity<MessageResponse> userUpdateExistingContact(@Valid @RequestBody UserContactRequest req){
-        return ResponseEntity.ok().body(userService.userAddContact(req));
+    public ResponseEntity<MessageResponse> userUpdateExistingContact(@Valid @RequestBody UserUpdateContactRequest req){
+        return ResponseEntity.ok().body(userService.userUpdateContact(req));
     }
 
     @DeleteMapping(value = "/delete/{userId}")

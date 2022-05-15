@@ -13,11 +13,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class UserCreationRequest implements Serializable {
 
-    @Min(value = 3, message = "please enter a valid last name. Nick name not supported")
     @NotNull(message = "please enter your last name")
     private String lastName;
 
-    @Min(value = 3, message = "please enter a valid last name. Nick name not supported")
     @NotNull(message = "please enter your first name")
     private String firstName;
 
